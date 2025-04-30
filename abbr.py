@@ -1588,7 +1588,6 @@ def abbreviate_bibtex_files(input_filenames, journal_list_file):
         try:
             journal = entry.get("journal").value
         except AttributeError:
-            print("No journal found")
             journal = ""
         # title = entry.get("Title").value
         # journal = entry.get("Journal").value
@@ -1621,7 +1620,6 @@ def abbreviate_bibtex_files(input_filenames, journal_list_file):
             # Write all fields except ENTRYTYPE and ID
             for key, value in entry.items():
                 if key in ('ENTRYTYPE', 'ID'):
-                    print(f"Skipping {key} field", entry.key)
                     continue
                 out_f.write(f"{indent}{key} = {format_value(str(value))},\n")
             out_f.write("}\n\n")
@@ -1630,7 +1628,7 @@ def abbreviate_bibtex_files(input_filenames, journal_list_file):
 
 
 import contextlib
-with contextlib.redirect_stdout(sys.stdout):
+with contextlib.redirect_stdout(sys.stderr):
     input_filenames = sys.argv[1:]
     if not input_filenames:
         print("Error: specify one or more files to be processed!")
