@@ -1550,11 +1550,15 @@ def load_abbreviation_map(journal_list_file):
             full, abbr = line.strip().split(' = ', 1)
             if full and abbr:
                 abbr_map[full.lower()] = abbr
+                if ': ' in full:
+                    abbr_map[full.replace(': ', '-').lower()] = abbr
+                if ' &' in full:
+                    abbr_map[full.replace(' &', ' \&').lower()] = abbr
     return abbr_map
 
 # --- Helper: normalize for deduplication ---
 def normalize(text):
-    return ''.join(text.lower().split())
+    return ' '.join(text.title().split())
 
 # --- Main logic ---
 def abbreviate_bibtex_files(input_filenames, journal_list_file):
@@ -1586,8 +1590,9 @@ def abbreviate_bibtex_files(input_filenames, journal_list_file):
         except AttributeError:
             title = ""
         try:
-            journal = entry.get("journal").value
+            journal = normalize(entry.get("journal").value)
         except AttributeError:
+            print("No journal found")
             journal = ""
         # title = entry.get("Title").value
         # journal = entry.get("Journal").value
@@ -1601,6 +1606,8 @@ def abbreviate_bibtex_files(input_filenames, journal_list_file):
             abbr = abbr_map.get(journal.lower())
             if abbr:
                 entry["journal"] = abbr
+            else:
+                entry["journal"] = journal.title()
 
         deduped.append(entry)
     
@@ -1608,19 +1615,24 @@ def abbreviate_bibtex_files(input_filenames, journal_list_file):
     def format_value(value):
         # Wrap string in braces, escape braces inside
         # value = value.replace('{', '\\{').replace('}', '\\}')
+        value = value.replace('_', '-')
         return f'{{{value}}}'
 
     indent = "    "
     with open(output_filename, "w", encoding="utf-8") as out_f:
-        # for entry in deduped:
-        for entry in all_entries:
+        for entry in deduped:
+        # for entry in all_entries:
             entrytype = entry.entry_type
             entryid = entry.key
+            entryid = entryid.replace(" ", "-")
             out_f.write(f"@{entrytype}{{{entryid},\n")
             # Write all fields except ENTRYTYPE and ID
             for key, value in entry.items():
                 if key in ('ENTRYTYPE', 'ID'):
                     continue
+                if '_' in value:
+                    # If the value contains an underscore, wrap it in braces
+                    value = format_value(value)
                 out_f.write(f"{indent}{key} = {format_value(str(value))},\n")
             out_f.write("}\n\n")
 
