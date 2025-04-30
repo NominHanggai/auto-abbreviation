@@ -1,6 +1,6 @@
 # auto-abbreviation
 
-This script automatically converts journal names to abbreviations in `.bib` files. It leverages excerpts from the `bibtexparser` package to parse `.bib` files and applies rules from a journal abbreviations list to perform the conversions.
+This script converts journal names to abbreviations in `.bib` files. It leverages excerpts from the `bibtexparser` package to parse `.bib` files and applies rules from a journal abbreviations list to perform the conversions.
 
 ## Usage
 
@@ -30,4 +30,5 @@ This will generate a consolidated `.bib` file named `abbreviated.bib`, which con
 - Refactor the script to remove unused portions of the `bibtexparser` code, ensuring only relevant functionality is retained.
 
 ## Acknowledgements
-This script shamelessly borrows code from the `bibtexparser` package, which is licensed under the MIT License. The original code can be found [here](https://github.com/sciunto-org/python-bibtexparser).
+- This script shamelessly borrows code from the `bibtexparser` package, which is licensed under the MIT License. The original code can be found [here](https://github.com/sciunto-org/python-bibtexparser).
+- The `journal.txt` file, which contains rules for journal abbreviations, is primarily based on [this resource](https://gist.github.com/FilipDominec/6df14b3424e335c4a47a96640f7f0df9) by [Filip Dominec](https://github.com/FilipDominec), with a few additional entries contributed by me.
