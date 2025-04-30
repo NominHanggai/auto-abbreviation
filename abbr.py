@@ -1558,7 +1558,22 @@ def load_abbreviation_map(journal_list_file):
 
 # --- Helper: normalize for deduplication ---
 def normalize(text):
-    return ' '.join(text.title().split())
+    exceptions = {'and', 'or', 'in', 'on', 'at', 'to', 'for', 'by', 'with', 'a', 'an', 'the', 'but', 'nor', 'of'}
+    words = text.lower().split()
+    if not words:
+        return ''
+    result = []
+    for i, word in enumerate(words):
+        if i == 0 or i == len(words) - 1:
+            # Always capitalize the first and last word
+            result.append(word.capitalize())
+        elif word in exceptions:
+            # Lowercase the exceptions
+            result.append(word)
+        else:
+            # Title case all other words
+            result.append(word.capitalize())
+    return ' '.join(result)
 
 # --- Main logic ---
 def abbreviate_bibtex_files(input_filenames, journal_list_file):
@@ -1607,8 +1622,10 @@ def abbreviate_bibtex_files(input_filenames, journal_list_file):
             if abbr:
                 entry["journal"] = abbr
             else:
-                entry["journal"] = journal.title()
-
+                entry["journal"] = normalize(journal)
+        if title:
+            entry["title"] = normalize(title)
+        
         deduped.append(entry)
     
     output_filename = "abbreviated.bib"
