@@ -12248,6 +12248,7 @@ Proceedings of the Prehistoric Society = Proc. Prehist. Soc
 Proceedings of the Royal Irish Academy. Section B: Biological, Geological and Chemical Science = Proc. R. Ir. Acad. [B]
 Proceedings of the Royal Society of London = Proc. Roy. Soc. London
 Proceedings of the Royal Society of London Series A = Proc. R. Soc. London, Ser. A
+Proceedings of the Royal Society of London. Series A, Mathematical and physical sciences = Proc. R. soc. Lond. Ser. A
 Proceedings of the Royal Society of London Series B = Proc. R. Soc. London, Ser. B
 Proceedings of the Royal Society of London. Series B: Biological Sciences = Proc. R. Soc. Lond. B Biol. Sci.
 Proceedings of the Royal Society of Medicine = Proc. R. Soc. Med.
