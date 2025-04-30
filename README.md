@@ -4,13 +4,6 @@ This script automatically converts journal names to abbreviations in `.bib` file
 
 ## Usage
 
-### Local Environment
-To use this script locally, simply run 
-```
-python abbr.py bibfile-1.bib bibfile-2.bib bibfile-3.bib
-```
-This will generate a consolidated `.bib` file named `abbreviated.bib`, which contains all references with their respective abbreviations. You can then use this file in the `\bibliography{abbreviated.bib}` command to include the references in your document.
-
 ### Overleaf
 On Overleaf, this script can be imported using the following command:
 
@@ -18,6 +11,15 @@ On Overleaf, this script can be imported using the following command:
 \input{|python abbr.py bibfile-1.bib bibfile-2.bib bibfile-3.bib}
 ```
 in the preamble of your document. This command will execute the script and generate a consolidated `.bib` file named `abbreviated.bib` in the project directory. You can then use this file in the `\bibliography{abbreviated.bib}` command to include the references in your document.
+
+
+### Local Environment
+To use this script locally, simply run 
+```
+python abbr.py bibfile-1.bib bibfile-2.bib bibfile-3.bib
+```
+This will generate a consolidated `.bib` file named `abbreviated.bib`, which contains all references with their respective abbreviations. You can then use this file in the `\bibliography{abbreviated.bib}` command to include the references in your document.
+
 
 ## Notes
 
