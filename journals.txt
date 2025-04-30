@@ -10702,6 +10702,7 @@ Nature Reviews Microbiology = Nat. Rev. Microbiol.
 Nature Reviews Molecular Cell Biology = Nat. Rev. Mol. Cell Biol.
 Nature Reviews Nephrology = Nat. Rev. Nephrol.
 Nature Reviews Neuroscience = Nat. Rev. Neurosci.
+Nature Reviews Physics = Nat. Rev. Phys.
 Nature Reviews. Cancer = Nat. Rev. Cancer
 Nature Reviews. Drug Discovery = Nat. Rev. Drug Discov.
 Nature Reviews. Genetics = Nat. Rev. Genet.
